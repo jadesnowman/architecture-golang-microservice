@@ -1,4 +1,10 @@
 # DOCKERIZE GOLANG APP
+
+## HOW TO
+### RUN
+`sudo docker-compose build`  
+`sudo docker-compose up`  
+### ADD MORE APP
 - clone your golang app to `src`  
 - add more app to `docker-compose`  
 

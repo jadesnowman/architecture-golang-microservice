@@ -1,0 +1,27 @@
+version: "3.5"
+
+services:
+  
+  # GOLANG
+  web:
+    build: ./.docker/golang
+    command: go run main.go
+    volumes:
+      - ./src/service-category:/var/www
+    ports:
+      - "8080:8080"
+    networks:
+      - backend
+    depends_on:
+      - db_redis
+    restart: unless-stopped
+  
+  # REDIS
+  db_redis:
+    build: ./.docker/redis
+    networks:
+      - backend
+    restart: unless-stopped
+
+networks:
+  backend:

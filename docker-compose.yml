@@ -7,21 +7,24 @@ services:
     build: ./.docker/golang
     command: go run main.go
     volumes:
-      - ./src/service-category:/var/www
+      - ./src/service-product:/var/www
     ports:
-      - "8080:8080"
+      - "8082:8082"
     networks:
       - backend
     depends_on:
-      - db_redis
+      - db_mysql
     restart: unless-stopped
   
-  # REDIS
-  db_redis:
-    build: ./.docker/redis
+  # MYSQL
+  db_mysql:
+    build: ./.docker/mysql
     networks:
       - backend
     restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: sandbox_service_product
 
 networks:
   backend:
